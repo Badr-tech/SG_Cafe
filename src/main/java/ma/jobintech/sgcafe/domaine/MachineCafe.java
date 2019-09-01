@@ -6,22 +6,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class TypeProduit {
+public class MachineCafe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer idtypePdt;
+	private Integer id;
 	private String libele;
+	private int count;
+	@OneToOne(fetch = FetchType.LAZY)
+	private BarMan barMan;
 	@OneToMany(fetch = FetchType.LAZY)
-	private Produit produit;
+	private Commande commande;
 
-	public Integer getIdtypePdt() {
-		return idtypePdt;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setIdtypePdt(Integer idtypePdt) {
-		this.idtypePdt = idtypePdt;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLibele() {
@@ -32,13 +36,22 @@ public class TypeProduit {
 		this.libele = libele;
 	}
 
-	public TypeProduit(Integer idtypePdt, String libele) {
-		super();
-		this.idtypePdt = idtypePdt;
-		this.libele = libele;
+	public int getCount() {
+		return count;
 	}
 
-	public TypeProduit() {
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public MachineCafe(Integer id, String libele, int count) {
+		super();
+		this.id = id;
+		this.libele = libele;
+		this.count = count;
+	}
+
+	public MachineCafe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
